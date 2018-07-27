@@ -321,8 +321,6 @@ public class SecurityTest {
         }
     }
 
-    @Ignore
-    // TODO implement RPK support for client
     @Test
     public void registered_device_with_rpk_to_server_with_rpk() throws NonUniqueSecurityInfoException {
         helper.createServerWithRPK();
@@ -340,8 +338,6 @@ public class SecurityTest {
         assertNotNull(helper.getCurrentRegistration());
     }
 
-    @Ignore
-    // TODO implement RPK support for client
     @Test
     public void registered_device_with_bad_rpk_to_server_with_rpk() throws NonUniqueSecurityInfoException {
         helper.createServerWithRPK();
@@ -358,8 +354,6 @@ public class SecurityTest {
         helper.ensureNoRegistration(1);
     }
 
-    @Ignore
-    // TODO implement RPK support for client
     @Test
     public void registered_device_with_rpk_and_bad_endpoint_to_server_with_rpk() throws NonUniqueSecurityInfoException {
         helper.createServerWithRPK();
@@ -476,14 +470,13 @@ public class SecurityTest {
         assertNotNull(helper.getCurrentRegistration());
     }
 
-    @Ignore
-    // TODO implement RPK support for client
     @Test
     public void registered_device_with_rpk_to_server_with_x509cert() throws NonUniqueSecurityInfoException {
         helper.createServerWithX509Cert(helper.trustedCertificates);
         helper.server.start();
 
-        helper.createRPKClient();
+        boolean useServerCertifcatePublicKey = true;
+        helper.createRPKClient(useServerCertifcatePublicKey);
         helper.client.start();
 
         helper.getSecurityStore()
